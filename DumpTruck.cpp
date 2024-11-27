@@ -17,7 +17,7 @@ double DumpTruck::getLoadVolume() const { return loadVolume; }
 
 void DumpTruck::show() const {
     CargoVehicle::show();
-    std::cout << std::setw(15) << std::left << "Объем кузова" << std::endl;
+    std::cout << std::setw(sizeof(getLoadVolume())/sizeof(double) + 5) << std::left << "Объем кузова" << std::endl;
 }
 
 DumpTruck& DumpTruck::operator=(const DumpTruck& other) {
@@ -30,7 +30,7 @@ DumpTruck& DumpTruck::operator=(const DumpTruck& other) {
 
 std::ostream& operator<<(std::ostream& out, DumpTruck& vehicle) {
     out << dynamic_cast<CargoVehicle&>(vehicle);
-    out << std::setw(15) << std::left << vehicle.getLoadVolume() << std::endl;
+    out << std::setw(sizeof(vehicle.getLoadVolume()) / sizeof(double) + 5) << std::left << vehicle.getLoadVolume() << std::endl;
     return out;
 }
 

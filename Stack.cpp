@@ -27,6 +27,7 @@ void stack<T>::pop() {
 	}
 	item* p = head;
 	head = head->next;
+	delete p->i; // Освобождаем память, на которую указывает p->i
 	delete p;
 }
 
@@ -34,7 +35,7 @@ template<class T>
 T stack<T>::pop1() {
 	if (head == NULL) {
 		std::cout << "Стек пуст" << std::endl;
-		return T(); // Возвращаем значение по умолчанию
+		return nullptr; // Возвращаем nullptr для указателя
 	}
 	item* p = head;
 	head = head->next;
@@ -44,17 +45,19 @@ T stack<T>::pop1() {
 }
 
 template <class T>
-void stack<T>::show(T& obj) {
+void stack<T>::show() {
 	if (head == NULL) {
 		std::cout << "Стек пуст" << std::endl;
 		return;
 	}
-	obj.show();
-	std::cout << std::endl;
 	int rowNumber = 1;
 	item* p = this->head;
+	p->i->show();
+	std::cout << std::endl;
 	while (p != NULL) {
-		std::cout << std::setw(5) << rowNumber++ << p->i << std::endl;
+		if (p->i != nullptr) { // Проверяем, что указатель не нулевой
+			std::cout << std::setw(5) << rowNumber++ << *(p->i) << std::endl; // Вызываем метод show() у объекта, на который указывает p->i
+		}
 		p = p->next;
 	}
 }
@@ -95,6 +98,6 @@ void stack<T>::removeAt(int index) {
 
 	item* toDelete = current->next;
 	current->next = toDelete->next;
+	delete toDelete->i; // Освобождаем память, на которую указывает toDelete->i
 	delete toDelete;
 }
-

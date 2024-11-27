@@ -18,7 +18,7 @@ double CargoVehicle::getMaxWeight() const { return maxCargoWeight; }
 
 void CargoVehicle::show() const {
     TransportVehicle::show();
-    std::cout << std::setw(35) << std::left << "Максимальная масса груза (кг)" << std::endl;
+    std::cout << std::setw(35) << std::left << "Максимальная масса груза (кг)";
 }
 
 CargoVehicle& CargoVehicle::operator=(const CargoVehicle& other) {
