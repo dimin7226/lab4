@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Car" Collapsed="true">
+    <Position X="6.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAARAAIAAAAAAAAAAAABAAAAgBAAgAIIAAAI=</HashCode>
+      <FileName>C:\Users\PC\Desktop\ПнаЯВУ\labs\lab4\Car.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CargoVehicle" Collapsed="true">
+    <Position X="9.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAACAAAAAAAAIAAAAAAAIAQAAAAAAAABAAgAAAAQAA=</HashCode>
+      <FileName>C:\Users\PC\Desktop\ПнаЯВУ\labs\lab4\CargoVehicle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CityPassengerVehicle" Collapsed="true">
+    <Position X="12.25" Y="6.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>ACAWAAAAAAAAAIAAAAAAAAAAACAAAAAADAAgAAgAgAA=</HashCode>
+      <FileName>C:\Users\PC\Desktop\ПнаЯВУ\labs\lab4\CityPassengerVehicle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DumpTruck" Collapsed="true">
+    <Position X="10.5" Y="6.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAIgAAAAAAAAIABCAgAAIAAAA=</HashCode>
+      <FileName>C:\Users\PC\Desktop\ПнаЯВУ\labs\lab4\DumpTruck.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntercityPassengerVehicle" Collapsed="true">
+    <Position X="15.25" Y="6.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAgAAACBADAAIgAAAQABAAhAAAQAAg=</HashCode>
+      <FileName>C:\Users\PC\Desktop\ПнаЯВУ\labs\lab4\IntercityPassengerVehicle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Interface&lt;T&gt;">
+    <Position X="4.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAoAAAIAAAAABAAAgQAAAAAAFAAAAAACAAAAA=</HashCode>
+      <FileName>C:\Users\PC\Desktop\ПнаЯВУ\labs\lab4\Interface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Jeep" Collapsed="true">
+    <Position X="3.75" Y="6.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACCAICAAAAAAAIAAAAAACAABAAgAAAAAAA=</HashCode>
+      <FileName>C:\Users\PC\Desktop\ПнаЯВУ\labs\lab4\Jeep.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InternationalPassengerVehicle" Collapsed="true">
+    <Position X="13.75" Y="6.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAKIAAAAAIQAAAAiAAAAABAAgAAIJEAA=</HashCode>
+      <FileName>C:\Users\PC\Desktop\ПнаЯВУ\labs\lab4\InternationalPassengerVehicle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Limousine" Collapsed="true">
+    <Position X="7.25" Y="6.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAEAIAAAEAgAAAAAAAAAAAABAAgAAAAAEA=</HashCode>
+      <FileName>C:\Users\PC\Desktop\ПнаЯВУ\labs\lab4\Limousine.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PassengerVehicle" Collapsed="true">
+    <Position X="13" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAABAIAAAAEAAAAAAAAAAAAABAAwAAAAgAA=</HashCode>
+      <FileName>C:\Users\PC\Desktop\ПнаЯВУ\labs\lab4\PassengerVehicle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RefrigeratedCargoVehicle" Collapsed="true">
+    <Position X="9" Y="6.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAABAAAAQAAAAIBAAgAAAAAQA=</HashCode>
+      <FileName>C:\Users\PC\Desktop\ПнаЯВУ\labs\lab4\RefrigeratedCargoVehicle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SportsCar" Collapsed="true">
+    <Position X="5.5" Y="6.5" Width="1.25" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAYQAAAAAAAAEAAABEAACBAAgAAAAAEA=</HashCode>
+      <FileName>C:\Users\PC\Desktop\ПнаЯВУ\labs\lab4\SportsCar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="stack&lt;T&gt;">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="stack&lt;T&gt;::item" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\Users\PC\Desktop\ПнаЯВУ\labs\lab4\Stack.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAgAAAAAAACAAAAIACAAAAAIAABAAIAAAAQCA=</HashCode>
+      <FileName>C:\Users\PC\Desktop\ПнаЯВУ\labs\lab4\Stack.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TransportVehicle" Collapsed="true">
+    <Position X="9.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgkMAIAAAAAwAIABAAAAAAAQAAEQAAGABAAggFQIQoA=</HashCode>
+      <FileName>C:\Users\PC\Desktop\ПнаЯВУ\labs\lab4\TransportVehicle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

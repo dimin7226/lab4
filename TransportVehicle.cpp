@@ -25,6 +25,7 @@ int TransportVehicle::getYear() const { return year; }
 int TransportVehicle::getHorsepower() const { return horsepower; }
 std::string TransportVehicle::getEngineType() const { return engineType; }
 int TransportVehicle::getId() const { return id; }
+std::string TransportVehicle::getCategory() const {return "Транспортные средста";}
 
 int TransportVehicle::counter = 0;
 
@@ -40,15 +41,14 @@ void TransportVehicle::show() const {
         << "Тип двигателя";
 }
 
-std::ostream& operator<<(std::ostream& out, TransportVehicle& vehicle) {
-    out << std::setw(5) << std::left << vehicle.getId() <<
-        std::setw(10) << vehicle.getColor() <<
-        std::setw(10) << vehicle.getBrand() <<
-        std::setw(10) << vehicle.getModel() <<
-        std::setw(15) << vehicle.getYear() <<
-        std::setw(20) << vehicle.getHorsepower() <<
-        std::setw(25) << vehicle.getEngineType();
-    return out;
+void TransportVehicle::print(std::ostream& out) const {
+    out << std::setw(5) << std::left << getId()
+        << std::setw(10) << getColor()
+        << std::setw(10) << getBrand()
+        << std::setw(10) << getModel()
+        << std::setw(15) << getYear()
+        << std::setw(20) << getHorsepower()
+        << std::setw(25) << getEngineType();
 }
 
 TransportVehicle& TransportVehicle::operator=(const TransportVehicle& other) {
@@ -108,5 +108,5 @@ std::istream& operator>>(std::istream& in, TransportVehicle& vehicle) {
 }
 
 TransportVehicle::~TransportVehicle() {
-  //  std::cout << "Деструктор TransportVehicle\n";
+  // std::cout << "Деструктор TransportVehicle\n";
 }

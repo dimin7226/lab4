@@ -19,6 +19,7 @@ void IntercityPassengerVehicle::setToCity(const std::string& toCity) { this->toC
 std::string IntercityPassengerVehicle::getToCity() const { return toCity; }
 void IntercityPassengerVehicle::setRouteLength(double routeLength) { this->routeLength = routeLength; }
 double IntercityPassengerVehicle::getRouteLength() const { return routeLength; }
+std::string IntercityPassengerVehicle::getCategory() const { return "Междугородские транспортные средства"; }
 
 void IntercityPassengerVehicle::show() const {
     PassengerVehicle::show();
@@ -59,6 +60,13 @@ std::istream& operator>>(std::istream& in, IntercityPassengerVehicle& vehicle) {
     std::cout << "Введите длину маршрута (в км): ";
     in >> vehicle.routeLength;
     return in;
+}
+
+void IntercityPassengerVehicle::print(std::ostream& out) const {
+    PassengerVehicle::print(out);
+    out << std::setw(15) << getFromCity()
+        << std::setw(15) << getToCity()
+        << std::setw(15) << getRouteLength();
 }
 
 IntercityPassengerVehicle::~IntercityPassengerVehicle() {

@@ -19,10 +19,12 @@ public:
     int getRouteNumber() const;
     void setNumberOfStops(int numberOfStops);
     int getNumberOfStops() const;
+    std::string getCategory() const;
     void show() const override;
     CityPassengerVehicle& operator=(const CityPassengerVehicle& other);
     friend std::ostream& operator << (std::ostream& out, CityPassengerVehicle& vehicle);
     friend std::istream& operator >> (std::istream& out, CityPassengerVehicle& vehicle);
+    virtual void print(std::ostream& out) const;
     virtual ~CityPassengerVehicle();
 };
 

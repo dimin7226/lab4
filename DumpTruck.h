@@ -16,10 +16,12 @@ public:
         double loadVolume);
     void setLoadVolume(double loadVolume);
     double getLoadVolume() const;
+    std::string getCategory() const;
     void show() const override;
     DumpTruck& operator=(const DumpTruck& other);
     friend std::ostream& operator << (std::ostream& out, DumpTruck& vehicle);
     friend std::istream& operator >> (std::istream& out, DumpTruck& vehicle);
+    virtual void print(std::ostream& out) const;
     virtual ~DumpTruck();
 };
 

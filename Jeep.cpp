@@ -16,6 +16,7 @@ Jeep::Jeep(const std::string& color, const std::string& brand, const std::string
 //Сеттер, геттер
 void Jeep::setClearance(double  clearance) { this->clearance = clearance; }
 double Jeep::getClearance() const { return clearance; }
+std::string Jeep::getCategory() const { return "Внедорожники"; }
 
 void Jeep::show() const {
     Car::show();
@@ -42,6 +43,11 @@ std::istream& operator>>(std::istream& in, Jeep& vehicle) {
     std::cout << "Введите клиренс (см): ";
     in >> vehicle.clearance;
     return in;
+}
+
+void Jeep::print(std::ostream& out) const {
+    Car::print(out);
+    out << std::setw(25) << getClearance();
 }
 
 Jeep::~Jeep() {

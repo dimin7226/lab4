@@ -16,6 +16,7 @@ Limousine::Limousine(const std::string& color, const std::string& brand, const s
 // Сеттер и геттер
 void Limousine::setLength(double length) { this->length = length; }
 double Limousine::getLength() const { return length; }
+std::string Limousine::getCategory() const { return "Лимузины"; }
 
 void Limousine::show() const {
     Car::show();
@@ -41,6 +42,11 @@ std::istream& operator>>(std::istream& in, Limousine& vehicle) {
     std::cout << "Введите длину автомобиля: ";
     in >> vehicle.length;
     return in;
+}
+
+void Limousine::print(std::ostream& out) const {
+    Car::print(out);
+    out << std::setw(20) << getLength();
 }
 
 Limousine::~Limousine() {

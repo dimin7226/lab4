@@ -15,10 +15,12 @@ public:
         // Сеттер и геттер
     void setPassengerSeats(int passengerSeats);
     int getPassengerSeats() const;
+    std::string getCategory() const;
     void show() const override;
     PassengerVehicle& operator=(const PassengerVehicle& other);
     friend std::ostream& operator << (std::ostream& out, PassengerVehicle& vehicle);
     friend std::istream& operator >> (std::istream& out, PassengerVehicle& vehicle);
+    virtual void print(std::ostream& out) const;
     virtual ~PassengerVehicle();
 };
 

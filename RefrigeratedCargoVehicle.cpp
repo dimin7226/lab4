@@ -16,6 +16,7 @@ RefrigeratedCargoVehicle::RefrigeratedCargoVehicle(const std::string& color, con
 // Сеттеры и геттеры
 void RefrigeratedCargoVehicle::setMinTemperature(double minTemperature) { this->minTemperature = minTemperature; }
 double RefrigeratedCargoVehicle::getMinTemperature() const { return minTemperature; }
+std::string RefrigeratedCargoVehicle::getCategory() const { return "Рефрижераторы"; }
 
 void RefrigeratedCargoVehicle::show() const {
     CargoVehicle::show();
@@ -46,6 +47,11 @@ std::istream& operator>>(std::istream& in, RefrigeratedCargoVehicle& vehicle) {
     std::cout << "Введите минимальную температуру: ";
     in >> vehicle.minTemperature;
     return in;
+}
+
+void RefrigeratedCargoVehicle::print(std::ostream& out) const {
+    CargoVehicle::print(out);
+    out << std::setw(30) << getMinTemperature();
 }
 
 RefrigeratedCargoVehicle::~RefrigeratedCargoVehicle() {

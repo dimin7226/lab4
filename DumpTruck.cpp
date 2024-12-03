@@ -14,6 +14,7 @@ DumpTruck::DumpTruck(const std::string& color, const std::string& brand, const s
 //Сеттер, геттер
 void DumpTruck::setLoadVolume(double  loadVolume) { this->loadVolume = loadVolume; }
 double DumpTruck::getLoadVolume() const { return loadVolume; }
+std::string DumpTruck::getCategory() const { return "Самосвалы"; }
 
 void DumpTruck::show() const {
     CargoVehicle::show();
@@ -44,6 +45,11 @@ std::istream& operator>>(std::istream& in, DumpTruck& vehicle) {
     std::cout << "Введите объем кузова (м3): ";
     in >> vehicle.loadVolume;
     return in;
+}
+
+void DumpTruck::print(std::ostream& out) const {
+    CargoVehicle::print(out);
+    out << std::setw(20) << getLoadVolume();
 }
 
 DumpTruck::~DumpTruck() {

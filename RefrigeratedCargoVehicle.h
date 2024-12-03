@@ -16,10 +16,12 @@ public:
         double minTemperature);
     void setMinTemperature(double minTemperature);
     double getMinTemperature() const;
+    std::string getCategory() const;
     void show() const override;
     RefrigeratedCargoVehicle& operator=(const RefrigeratedCargoVehicle& other);
     friend std::ostream& operator << (std::ostream& out, RefrigeratedCargoVehicle& vehicle);
     friend std::istream& operator >> (std::istream& out, RefrigeratedCargoVehicle& vehicle);
+    virtual void print(std::ostream& out) const;
     virtual ~RefrigeratedCargoVehicle();
 };
 

@@ -21,6 +21,7 @@ void InternationalPassengerVehicle::setToCountry(const std::string& toCountry) {
 std::string InternationalPassengerVehicle::getToCountry() const { return toCountry; }
 void InternationalPassengerVehicle::setTravelTime(int travelTime) { this->travelTime = travelTime; }
 int InternationalPassengerVehicle::getTravelTime() const { return travelTime; }
+std::string InternationalPassengerVehicle::getCategory() const { return "ћеждународные транспортные средства"; }
 
 void InternationalPassengerVehicle::show() const {
     PassengerVehicle::show();
@@ -61,6 +62,13 @@ std::istream& operator>>(std::istream& in, InternationalPassengerVehicle& vehicl
     std::cout << "¬ведите врем€ в пути (в часах): ";
     in >> vehicle.travelTime;
     return in;
+}
+
+void InternationalPassengerVehicle::print(std::ostream& out) const {
+    PassengerVehicle::print(out);
+    out << std::setw(15) << getFromCountry()
+        << std::setw(15) << getToCountry()
+        << std::setw(15) << getTravelTime();
 }
 
 InternationalPassengerVehicle::~InternationalPassengerVehicle() {

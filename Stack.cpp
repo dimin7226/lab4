@@ -3,10 +3,10 @@
 
 template<class T>
 stack<T>::stack() {
-	head = NULL;
+	head = nullptr;
 }
 
-template <class T>
+template<class T>
 stack<T>::~stack() {
 	clear();
 }
@@ -33,14 +33,14 @@ void stack<T>::pop() {
 
 template<class T>
 T stack<T>::pop1() {
-	if (head == NULL) {
+	if (head == nullptr) {
 		std::cout << "Стек пуст" << std::endl;
-		return nullptr; // Возвращаем nullptr для указателя
+		return T(); // Возвращаем значение по умолчанию для T
 	}
 	item* p = head;
 	head = head->next;
-	T tmp = p->i;
-	delete p;
+	T tmp = p->i; // Копируем значение
+	delete p;     // Удаляем только узел
 	return tmp;
 }
 
@@ -52,50 +52,43 @@ void stack<T>::show() {
 	}
 	int rowNumber = 1;
 	item* p = this->head;
-	p->i->show();
-	std::cout << std::endl;
 	while (p != NULL) {
 		if (p->i != nullptr) { // Проверяем, что указатель не нулевой
-			std::cout << std::setw(5) << rowNumber++ << *(p->i) << std::endl; // Вызываем метод show() у объекта, на который указывает p->i
+			p->i->show();
+			std::cout << std::setw(5) << rowNumber++ << *p->i << std::endl; // Вызываем метод show() у объекта, на который указывает p->i
+			std::cout << std::endl;
 		}
 		p = p->next;
 	}
 }
-
 template <class T>
 bool stack<T>::empty() {
 	return head == NULL;
 }
-
 template <class T>
 void stack<T>::clear() {
 	while (!empty()) {
 		pop();
 	}
 }
-
 template <class T>
 void stack<T>::removeAt(int index) {
 	if (index < 0 || head == NULL) {
 		std::cout << "Неверный индекс или стек пуст" << std::endl;
 		return;
 	}
-
 	if (index == 0) {
 		pop();
 		return;
 	}
-
 	item* current = head;
 	for (int i = 0; i < index - 1 && current->next != NULL; ++i) {
 		current = current->next;
 	}
-
 	if (current->next == NULL) {
 		std::cout << "Индекс вне диапазона" << std::endl;
 		return;
 	}
-
 	item* toDelete = current->next;
 	current->next = toDelete->next;
 	delete toDelete->i; // Освобождаем память, на которую указывает toDelete->i

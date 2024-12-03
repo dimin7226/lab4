@@ -19,6 +19,7 @@ void SportsCar::setMaxSpeed(double maxSpeed) { this->maxSpeed = maxSpeed; }
 double SportsCar::getMaxSpeed() const { return maxSpeed; }
 void SportsCar::setAccelerationTime(double accelerationTime) { this->accelerationTime = accelerationTime; }
 double SportsCar::getAccelerationTime() const { return accelerationTime; }
+std::string SportsCar::getCategory() const { return "Спорткары"; }
 
 void SportsCar::show() const {
     Car::show();
@@ -49,6 +50,12 @@ std::istream& operator>>(std::istream& in, SportsCar& vehicle) {
     std::cout << "Введите время разгона 0-100 км/ч (в секундах): ";
     in >> vehicle.accelerationTime;
     return in;
+}
+
+void SportsCar::print(std::ostream& out) const {
+    Car::print(out);
+    out << std::setw(20) << getMaxSpeed()
+        << std::setw(25) << getAccelerationTime();
 }
 
 SportsCar::~SportsCar() {

@@ -15,6 +15,7 @@ void Car::setWeightCar(double  weight) { this->weight = weight; }
 double Car::getWightCar() const { return weight; }
 void Car::setNumberOfDoors(int numberOfDoors) { this->numberOfDoors = numberOfDoors; }
 int Car::getNumberOfDoors() const { return numberOfDoors; }
+std::string Car::getCategory() const { return "Ћегковые машины"; }
 
 void Car::show() const {
     TransportVehicle::show();
@@ -44,6 +45,12 @@ std::istream& operator>>(std::istream& in, Car& vehicle) {
     std::cout << "¬ведите количество дверей: ";
     in >> vehicle.numberOfDoors;
     return in;
+}
+
+void Car::print(std::ostream& out) const {
+    TransportVehicle::print(out);
+    out << std::setw(25) << getWightCar()
+        << std::setw(20) << getNumberOfDoors();
 }
 
 Car::~Car() {

@@ -22,10 +22,12 @@ public:
     std::string getToCountry() const;
     void setTravelTime(int travelTime);
     int getTravelTime() const;
+    std::string getCategory() const;
     void show() const override;
     InternationalPassengerVehicle& operator=(const InternationalPassengerVehicle& other);
     friend std::ostream& operator << (std::ostream& out, InternationalPassengerVehicle& vehicle);
     friend std::istream& operator >> (std::istream& out, InternationalPassengerVehicle& vehicle);
+    virtual void print(std::ostream& out) const;
     virtual ~InternationalPassengerVehicle();
 };
 

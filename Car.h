@@ -15,10 +15,12 @@ public:
     double getWightCar() const;
     void setNumberOfDoors(int numberOfDoors);
     int getNumberOfDoors() const;
+    std::string getCategory() const;
     void show() const override;
     Car& operator=(const Car& other);
     friend std::ostream& operator << (std::ostream& out, Car& vehicle);
     friend std::istream& operator >> (std::istream& out, Car& vehicle);
+    virtual void print(std::ostream& out) const;
     virtual ~Car();
 };
 

@@ -8,7 +8,6 @@
 class Jeep : public Car {
 private:
     double clearance;
-
 public:
     Jeep();
     Jeep(const std::string& color, const std::string& brand, const std::string& model,
@@ -17,9 +16,11 @@ public:
     void setClearance(double clearance);
     double getClearance() const;
     void show() const override;
+    std::string getCategory() const;
     Jeep& operator=(const Jeep& other);
     friend std::ostream& operator << (std::ostream& out, Jeep& vehicle);
     friend std::istream& operator >> (std::istream& out, Jeep& vehicle);
+    virtual void print(std::ostream& out) const;
     virtual ~Jeep();
 };
 

@@ -19,6 +19,7 @@ void CityPassengerVehicle::setRouteNumber(int routeNumber) { this->routeNumber =
 int CityPassengerVehicle::getRouteNumber() const { return routeNumber; }
 void CityPassengerVehicle::setNumberOfStops(int numberOfStops) { this->numberOfStops = numberOfStops; }
 int CityPassengerVehicle::getNumberOfStops() const { return numberOfStops; };
+std::string CityPassengerVehicle::getCategory() const { return "Городские транспортные средства"; }
 
 void CityPassengerVehicle::show() const {
     PassengerVehicle::show();
@@ -54,6 +55,12 @@ std::istream& operator>>(std::istream& in, CityPassengerVehicle& vehicle) {
     std::cout << "Введите количество остановок: ";
     in >> vehicle.numberOfStops;
     return in;
+}
+
+void CityPassengerVehicle::print(std::ostream& out) const {
+    PassengerVehicle::print(out);
+    out << std::setw(20) << getRouteNumber()
+        << std::setw(30) << getNumberOfStops();
 }
 
 CityPassengerVehicle::~CityPassengerVehicle() {

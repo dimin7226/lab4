@@ -15,6 +15,7 @@ CargoVehicle::CargoVehicle(const std::string& color, const std::string& brand, c
 // Сеттер и геттер
 void CargoVehicle::setMaxWeight(double  maxCargoWeight) { this->maxCargoWeight = maxCargoWeight; }
 double CargoVehicle::getMaxWeight() const { return maxCargoWeight; }
+std::string CargoVehicle::getCategory() const { return "Грузовики"; }
 
 void CargoVehicle::show() const {
     TransportVehicle::show();
@@ -45,6 +46,11 @@ std::istream& operator>>(std::istream& in, CargoVehicle& vehicle) {
     std::cout << "Введите максимальную массу груза (кг): ";
     in >> vehicle.maxCargoWeight;
     return in;
+}
+
+void CargoVehicle::print(std::ostream& out) const {
+    TransportVehicle::print(out);
+    out << std::setw(35) << getMaxWeight();
 }
 
 CargoVehicle::~CargoVehicle() {

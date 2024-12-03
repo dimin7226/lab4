@@ -1,5 +1,4 @@
 #pragma once 
-#include <map>
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -32,10 +31,15 @@ public:
     int getYear() const;
     int getHorsepower() const;
     int getId() const;
+    std::string getCategory() const;
     std::string getEngineType() const;
     virtual void show() const;
     TransportVehicle& operator=(const TransportVehicle& other);
-    friend std::ostream& operator<<(std::ostream& os, TransportVehicle& vehicle);
+    friend std::ostream& operator<<(std::ostream& out, const TransportVehicle& vehicle) {
+        vehicle.print(out);
+        return out;
+    }
     friend std::istream& operator>>(std::istream& is, TransportVehicle& vehicle);
+    virtual void print(std::ostream& out) const;
     virtual ~TransportVehicle();
 };

@@ -14,10 +14,12 @@ public:
     CargoVehicle(const std::string& color, const std::string& brand, const std::string& model, int year, int horsepower, const std::string& engineType, double maxCargoWeight);
     void setMaxWeight(double  maxCargoWeight);
     double getMaxWeight() const;
+    std::string getCategory() const;
     void show() const override;
     CargoVehicle& operator=(const CargoVehicle& other);
     friend std::ostream& operator << (std::ostream& out, CargoVehicle& vehicle);
     friend std::istream& operator >> (std::istream& out, CargoVehicle& vehicle);
+    virtual void print(std::ostream& out) const;
     virtual ~CargoVehicle();
 };
 

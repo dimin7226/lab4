@@ -1,0 +1,17 @@
+﻿  Car.cpp
+  CargoVehicle.cpp
+  CityPassengerVehicle.cpp
+  DumpTruck.cpp
+  IntercityPassengerVehicle.cpp
+  Interface.cpp
+  InternationalPassengerVehicle.cpp
+  Jeep.cpp
+  Limousine.cpp
+  main.cpp
+  PassengerVehicle.cpp
+  RefrigeratedCargoVehicle.cpp
+  SportsCar.cpp
+  Stack.cpp
+  TransportVehicle.cpp
+  Generating Code...
+  lab4.vcxproj -> C:\Users\PC\Desktop\ПнаЯВУ\labs\lab4\lab4\Debug\lab4.exe

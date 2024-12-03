@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TransportVehicle">
+    <Position X="14.5" Y="1.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAkMAIAAAAAwAAABAAAAAAAQAAEQAACABAAggFQIQIA=</HashCode>
+      <FileName>TransportVehicle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SportsCar">
+    <Position X="26.25" Y="11.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAQQAAAAAAAAEAAABEAACBAAgAAAAAEA=</HashCode>
+      <FileName>SportsCar.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RefrigeratedCargoVehicle">
+    <Position X="3" Y="10.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAAQAAAAIBAAgAAAAAQA=</HashCode>
+      <FileName>RefrigeratedCargoVehicle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PassengerVehicle">
+    <Position X="13.75" Y="7.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAABAAAAAAEAAAAAAAAAAAAABAAwAAAAgAA=</HashCode>
+      <FileName>PassengerVehicle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Limousine">
+    <Position X="21" Y="11.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAEAAAAAEAgAAAAAAAAAAAABAAgAAAAAEA=</HashCode>
+      <FileName>Limousine.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Jeep">
+    <Position X="23.75" Y="11.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACCAACAAAAAAAIAAAAAACAABAAgAAAAAAA=</HashCode>
+      <FileName>Jeep.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InternationalPassengerVehicle">
+    <Position X="13.5" Y="10.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACIAAAAAIQAAAAiAAAAABAAgAAIZEAA=</HashCode>
+      <FileName>InternationalPassengerVehicle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntercityPassengerVehicle">
+    <Position X="9.75" Y="10.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAACBADAAIgAAAQABAAhAAAQAAg=</HashCode>
+      <FileName>IntercityPassengerVehicle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DumpTruck">
+    <Position X="6.75" Y="10.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIgAAAAAAAAIABCAgAAIAAAA=</HashCode>
+      <FileName>DumpTruck.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CityPassengerVehicle">
+    <Position X="17.5" Y="10.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>ACAWAAAAAAAAAAAAAAAAAAAAACAAAAAADAAgAAgAgAA=</HashCode>
+      <FileName>CityPassengerVehicle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CargoVehicle">
+    <Position X="5" Y="7.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEAACAAAAAAAAAAAAAAAAIAQAAAAAAAABAAgAAAAQAA=</HashCode>
+      <FileName>CargoVehicle.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Car">
+    <Position X="23.75" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAARAAAAAAAAAAAAAAABAAAAgBAAgAIIAAAI=</HashCode>
+      <FileName>Car.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

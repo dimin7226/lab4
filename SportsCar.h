@@ -16,12 +16,14 @@ public:
         double maxSpeed, double accelerationTime);
     void setMaxSpeed(double maxSpeed);
     double getMaxSpeed() const;
+    std::string getCategory() const;
     void setAccelerationTime(double accelerationTime);
     double getAccelerationTime() const;
     void show() const override;
     SportsCar& operator=(const SportsCar& other);
     friend std::ostream& operator << (std::ostream& out, SportsCar& vehicle);
     friend std::istream& operator >> (std::istream& out, SportsCar& vehicle);
+    virtual void print(std::ostream& out) const;
     virtual ~SportsCar();
 };
 

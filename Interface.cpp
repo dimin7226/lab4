@@ -1,461 +1,456 @@
-#include"Interface.h"
-#include"Stack.h"
-template <typename T>
-void searchVehicle(stack<T>& vehicleStack) {
-    std::string color, brand, model, engineType;
-    int year = -1, horsepower = -1;
-    std::cout << "Введите параметры поиска (оставьте пустым для пропуска):\n";
-    std::cout << "Цвет: ";
-    std::cin.ignore(); // Очистка буфера
-    std::getline(std::cin, color);
-    std::cout << "Бренд: ";
-    std::getline(std::cin, brand);
-    std::cout << "Модель: ";
-    std::getline(std::cin, model);
-    std::cout << "Год выпуска: ";
-    std::cin >> year;
-    std::cout << "Лошадиные силы: ";
-    std::cin >> horsepower;
-    std::cout << "Тип двигателя: ";
-    std::cin.ignore(); // Очистка буфера
-    std::getline(std::cin, engineType);
-    vehicleStack.searchAndShow(color, brand, model, year, horsepower, engineType);
-}
+#include<iostream>
+#include "interface.h"
 
-/*
 template <class T>
-void Interface<T>::menu() {
-    stack<T> st;
-    T value;
-    char selection;
-    bool flag = true; // Управление циклом
-    do {
-        std::cout << "1. Добавить элемент стека" << std::endl;
-        std::cout << "2. Показать стек" << std::endl;
-        std::cout << "3. Удалить элемент стека" << std::endl;
-        std::cout << "4. Измененить значение поля" << std::endl;
-        std::cout << "5. Поиск" << std::endl;
-        std::cout << "6. Удалить все элементы стека" << std::endl;
-        std::cout << "7. Удалить элемент по номеру №" << std::endl;
-        std::cout << "8. Выход" << std::endl;
-        std::cout << "Сделать выбор: ";
-        rewind(stdin);
-        std::cin >> selection;
-        while (std::cin.get() != '\n'); // Удаляет все символы из потока ввода до новой строки
-        switch (selection) {
-        case '1': {
-            T value;
-            std::cin >> value;
-            st.push(value);
-            break;
-        }
-        case '2': {
-            std::cout << "Показ стека..." << std::endl;
-            st.show(value);
-            break;
-        }
-        case '3': {
-            std::cout << "Удаление элемента стека..." << std::endl;
-            st.pop();
-            break;
-        }
-        case '4': {
-            std::cout << "Изменение значения поля..." << std::endl;
-            st.show(value);
-
-            if (st.empty()) {
-                std::cout << "Стек пуст. Изменять нечего." << std::endl;
-                break;
-            }
-
-            int index;
-            std::cout << "Введите номер элемента в стеке, который хотите изменить (начиная с 1): ";
-            std::cin >> index;
-
-            // Проверка корректности индекса
-            if (index <= 0) {
-                std::cout << "Некорректный индекс." << std::endl;
-                break;
-            }
-
-            T elementToModify;
-            int currentIndex = 1;
-            stack<T> tempStack;
-
-            // Извлекаем элементы до нужного индекса
-            while (!st.empty() && currentIndex < index) {
-                tempStack.push(st.pop1());
-                ++currentIndex;
-            }
-
-            if (st.empty() || currentIndex != index) {
-                std::cout << "Элемент с таким номером отсутствует." << std::endl;
-                while (!tempStack.empty()) {
-                    st.push(tempStack.pop1());
-                }
-                break;
-            }
-
-            elementToModify = st.pop1(); // Извлекаем элемент
-
-            // Вывод полей для редактирования
-            std::cout << "Выберите поле для изменения:\n";
-            if constexpr (std::is_same<T, Car>::value) {
-                std::cout << "1. Цвет\n";
-                std::cout << "2. Бренд\n";
-                std::cout << "3. Модель\n";
-                std::cout << "4. Год выпуска\n";
-                std::cout << "5. Лошадиные силы\n";
-                std::cout << "6. Тип двигателя\n";
-                std::cout << "7. Вес\n";
-                std::cout << "8. Количество дверей\n";
-            }
-            else if constexpr (std::is_same<T, Jeep>::value) {
-                std::cout << "1. Клиренс\n";
-                // Добавить поля для Jeep
-            }
-            // Аналогично для других классов
-
-            int fieldChoice;
-            std::cout << "Введите номер поля: ";
-            std::cin >> fieldChoice;
-
-            std::cout << "Введите новое значение: ";
-            std::string newValue;
-            std::cin.ignore();
-            std::getline(std::cin, newValue);
-
-            // Изменение поля в зависимости от выбора
-            bool fieldChanged = false;
-            switch (fieldChoice) {
-            case 1:
-                if constexpr (std::is_same<T, Car>::value || std::is_same<T, Jeep>::value) {
-                    elementToModify.setColor(newValue);
-                    fieldChanged = true;
-                }
-                break;
-            case 2:
-                if constexpr (std::is_same<T, Car>::value) {
-                    elementToModify.setBrand(newValue);
-                    fieldChanged = true;
-                }
-                break;
-                // Добавить остальные поля для классов
-            default:
-                std::cout << "Неверный выбор поля." << std::endl;
-                break;
-            }
-
-            if (fieldChanged) {
-                std::cout << "Поле успешно изменено." << std::endl;
-            }
-            else {
-                std::cout << "Поле не изменено." << std::endl;
-            }
-
-            // Возвращаем элементы обратно в стек
-            while (!tempStack.empty()) {
-                st.push(tempStack.pop1());
-            }
-            st.push(elementToModify); // Возвращаем измененный элемент в стек
-            break;
-        }
-        case '5': {
-            searchVehicle(st);
-            break;
-        }
-        case '6': {
-            std::cout << "Удаление всех элементов стека..." << std::endl;
-            st.clear();
-            break;
-        }
-        case '7': {
-            std::cout << "Введите номер № элемента стека: ";
-            int index;
-            std::cin >> index;
-            st.removeAt(index - 1);
-            break;
-        }
-        case '8': {
-            std::cout << "Выход из меню работы со стеком..." << std::endl;
-            flag = false;
-            break;
-        }
-        default: {
-            std::cout << "Невозможный ввод. Пожалуйста, попробуйте снова." << std::endl;
-            break;
-        }
-        }
-    } while (flag);
-}
-
-template <typename VehicleType>
-void handleVehicle(const std::string& prompt, const std::vector<std::pair<int, VehicleType>>& options) {
-    std::cout << prompt;
-    int choice;
-    rewind(stdin);
-    std::cin >> choice;
-    for (const auto& option : options) {
-        if (option.first == choice) {
-            Interface<VehicleType> vehicle;
-            vehicle.menu();
-            return;
-        }
+void Interface<T>::searchVehicle(stack<T*>& st) {
+    if (st.empty()) {
+        std::cout << "Стек пуст. Поиск невозможен.\n";
+        return;
     }
 
-    std::cout << "Неверный выбор. Пожалуйста, попробуйте снова." << std::endl;
-}
-template <class T>
-void Interface<T>::handleCar() {
-    handleVehicle<Car>(
-        "Выберите тип легкового транспортного средства:\n"
-        "1. Спорткар\n"
-        "2. Внедорожник\n"
-        "3. Лимузин\n"
-        "Ваш выбор: ",
-        {
-        { 1, SportsCar{} },
-        { 2, Jeep{} },
-        { 3, Limousine{} }
+    std::cout << "Выберите параметры для поиска (введите номера через пробел, 0 для завершения выбора):\n";
+    std::cout << "1. Цвет\n2. Бренд\n3. Модель\n4. Год выпуска\n5. Лошадиные силы\n6. Тип двигателя\n";
+    std::cout << "7. Вес автомобиля\n8. Количество дверей\n9. Максимальная скорость\n";
+    std::cout << "10. Время разгона до 100 км/ч\n11. Длина автомобиля\n12. Количество пассажирских мест\n";
+    std::cout << "13. Максимальный вес груза\n14. Объем кузова\n15. Минимальная температура\n";
+
+    std::vector<int> searchParams;
+    int param;
+    while (true) {
+        std::cin >> param;
+        if (param == 0) break;
+        if (param >= 1 && param <= 15) searchParams.push_back(param);
+    }
+
+    std::vector<std::string> searchValues(searchParams.size());
+    for (size_t i = 0; i < searchParams.size(); ++i) {
+        std::cout << "Введите значение для параметра " << searchParams[i] << ": ";
+        std::cin >> searchValues[i];
+    }
+
+    stack<T*> tempStack;
+    bool found = false;
+
+    while (!st.empty()) {
+        T* vehicle = st.pop1();
+        bool match = true;
+
+        for (size_t i = 0; i < searchParams.size(); ++i) {
+            std::string vehicleValue;
+            switch (searchParams[i]) {
+            case 1: vehicleValue = vehicle->getColor(); break;
+            case 2: vehicleValue = vehicle->getBrand(); break;
+            case 3: vehicleValue = vehicle->getModel(); break;
+            case 4: vehicleValue = std::to_string(vehicle->getYear()); break;
+            case 5: vehicleValue = std::to_string(vehicle->getHorsepower()); break;
+            case 6: vehicleValue = vehicle->getEngineType(); break;
+            case 7:
+                if (auto car = dynamic_cast<Car*>(vehicle))
+                    vehicleValue = std::to_string(car->getWightCar());
+                break;
+            case 8:
+                if (auto car = dynamic_cast<Car*>(vehicle))
+                    vehicleValue = std::to_string(car->getNumberOfDoors());
+                break;
+            case 9:
+                if (auto sportsCar = dynamic_cast<SportsCar*>(vehicle))
+                    vehicleValue = std::to_string(sportsCar->getMaxSpeed());
+                break;
+            case 10:
+                if (auto sportsCar = dynamic_cast<SportsCar*>(vehicle))
+                    vehicleValue = std::to_string(sportsCar->getAccelerationTime());
+                break;
+            case 11:
+                if (auto limousine = dynamic_cast<Limousine*>(vehicle))
+                    vehicleValue = std::to_string(limousine->getLength());
+                break;
+            case 12:
+                if (auto passengerVehicle = dynamic_cast<PassengerVehicle*>(vehicle))
+                    vehicleValue = std::to_string(passengerVehicle->getPassengerSeats());
+                break;
+            case 13:
+                if (auto cargoVehicle = dynamic_cast<CargoVehicle*>(vehicle))
+                    vehicleValue = std::to_string(cargoVehicle->getMaxWeight());
+                break;
+            case 14:
+                if (auto dumpTruck = dynamic_cast<DumpTruck*>(vehicle))
+                    vehicleValue = std::to_string(dumpTruck->getLoadVolume());
+                break;
+            case 15:
+                if (auto refrigeratedCargoVehicle = dynamic_cast<RefrigeratedCargoVehicle*>(vehicle))
+                    vehicleValue = std::to_string(refrigeratedCargoVehicle->getMinTemperature());
+                break;
+            }
+
+            if (vehicleValue != searchValues[i]) {
+                match = false;
+                break;
+            }
         }
-    );
-}
 
-template <class T>
-void Interface<T>::handleCargoVehicle() {
-    handleVehicle<CargoVehicle>(
-        "Выберите тип грузового транспортного средства:\n"
-        "1. Рефрижератор\n"
-        "2. Самосвал\n"
-        "Ваш выбор: ",
-        {
-            {1, RefrigeratedCargoVehicle()},
-            {2, DumpTruck()}
+        if (match) {
+            std::cout << "Найдено совпадение:\n";
+            (*vehicle).show();
+            std::cout << *vehicle << std::endl;
+            found = true;
         }
-    );
+
+        tempStack.push(vehicle);
+    }
+
+    // Восстанавливаем исходный стек
+    while (!tempStack.empty()) {
+        st.push(tempStack.pop1());
+    }
+
+    if (!found) {
+        std::cout << "Совпадений не найдено.\n";
+    }
 }
 
 template <class T>
-void Interface<T>::handlePassengerVehicle() {
-    handleVehicle<PassengerVehicle>(
-        "Выберите тип пассажирского транспортного средства:\n"
-        "1. Междугородний\n"
-        "2. Городской\n"
-        "3. Международный\n"
-        "Ваш выбор: ",
-        {
-            {1, IntercityPassengerVehicle()},
-            {2, CityPassengerVehicle()},
-            {3, InternationalPassengerVehicle()}
-        }
-    );
-}
-
-template <class T>
-void Interface<T>::displayMainMenu() const {
-    std::cout << "Выберете объект с которым будете работать:" << std::endl;
-    std::cout << "1. Грузовое транспортное средство" << std::endl;
-    std::cout << "2. Пассажирское транспортное средство" << std::endl;
-    std::cout << "3. Легковое транспортное средство" << std::endl;
-    std::cout << "0. Выход" << std::endl;
-    std::cout << "Сделать выбор: ";
-}
-
-template <class T>
-void Interface<T>::func() {
+TransportVehicle* Interface<T>::createVehicle() {
     int choice;
-    do {
-        displayMainMenu();
-        rewind(stdin);
+    std::cout << "Выберите тип транспортного средства:\n";
+    std::cout << "1. Грузовое ТС\n";
+    std::cout << "2. Пассажирское ТС\n";
+    std::cout << "3. Легковое ТС\n";
+    std::cout << "Ваш выбор: ";
+    std::cin >> choice;
+    TransportVehicle* vehicle = nullptr;
+    switch (choice) {
+    case 1: {
+        std::cout << "Выберите тип грузового ТС:\n";
+        std::cout << "1. Рефрижератор\n";
+        std::cout << "2. Самосвал\n";
         std::cin >> choice;
-        switch (choice) {
+        if (choice == 1) {
+            auto* refVehicle = new RefrigeratedCargoVehicle();
+            std::cin >> *refVehicle;
+            vehicle = refVehicle;
+        }
+        else if (choice == 2) {
+            auto* dumpVehicle = new DumpTruck();
+            std::cin >> *dumpVehicle;
+            vehicle = dumpVehicle;
+        }
+        break;
+    }
+    case 2: {
+        std::cout << "Выберите тип пассажирского ТС:\n";
+        std::cout << "1. Междугородний\n";
+        std::cout << "2. Городской\n";
+        std::cout << "3. Международный\n";
+        std::cin >> choice;
+        if (choice == 1) {
+            auto* intercityVehicle = new IntercityPassengerVehicle();
+            std::cin >> *intercityVehicle;
+            vehicle = intercityVehicle;
+        }
+        else if (choice == 2) {
+            auto* cityVehicle = new CityPassengerVehicle();
+            std::cin >> *cityVehicle;
+            vehicle = cityVehicle;
+        }
+        else if (choice == 3) {
+            auto* internationalVehicle = new InternationalPassengerVehicle();
+            std::cin >> *internationalVehicle;
+            vehicle = internationalVehicle;
+        }
+        break;
+    }
+    case 3: {
+        std::cout << "Выберите тип легкового ТС:\n";
+        std::cout << "1. Спорткар\n";
+        std::cout << "2. Внедорожник\n";
+        std::cout << "3. Лимузин\n";
+        std::cin >> choice;
+        if (choice == 1) {
+            auto* sportsVehicle = new SportsCar();
+            std::cin >> *sportsVehicle;
+            vehicle = sportsVehicle;
+        }
+        else if (choice == 2) {
+            auto* jeepVehicle = new Jeep();
+            std::cin >> *jeepVehicle;
+            vehicle = jeepVehicle;
+        }
+        else if (choice == 3) {
+            auto* limoVehicle = new Limousine();
+            std::cin >> *limoVehicle;
+            vehicle = limoVehicle;
+        }
+        break;
+    }
+    default:
+        std::cout << "Неверный выбор.\n";
+        return nullptr;
+    }
+    return vehicle;
+}
+
+template <class T>
+void Interface<T>::modifyElement(stack<T*>& st) {
+    if (st.empty()) {
+        std::cout << "Стек пуст. Нечего изменять.\n";
+        return;
+    }
+    std::cout << "Текущее состояние стека:\n";
+    st.show();
+    int index;
+    std::cout << "Введите номер элемента для изменения (начиная с 1): ";
+    std::cin >> index;
+    if (index < 1) {
+        std::cout << "Неверный индекс.\n";
+        return;
+    }
+    stack<T*> tempStack;
+    int currentIndex = 1;
+    T* elementToModify = nullptr;
+    while (!st.empty() && currentIndex < index) {   // Извлекаем элементы до нужного индекса
+        tempStack.push(st.pop1());
+        ++currentIndex;
+    }
+    if (st.empty()) std::cout << "Элемент с таким номером отсутствует.\n";
+    else {
+        elementToModify = st.pop1();
+        std::cout << "Текущие данные элемента:\n";
+        std::cout << *elementToModify << std::endl;
+        std::cout << "Выберите поле для изменения:\n";
+        std::cout << "1. Цвет\n";
+        std::cout << "2. Бренд\n";
+        std::cout << "3. Модель\n";
+        std::cout << "4. Год выпуска\n";
+        std::cout << "5. Лошадиные силы\n";
+        std::cout << "6. Тип двигателя\n";
+        if (dynamic_cast<Car*>(elementToModify)) {
+            std::cout << "7. Вес автомобиля\n";
+            std::cout << "8. Количество дверей\n";
+        }
+        if (dynamic_cast<SportsCar*>(elementToModify)) {
+            std::cout << "9. Максимальная скорость\n";
+            std::cout << "10. Время разгона до 100 км/ч\n";
+        }
+        if (dynamic_cast<Limousine*>(elementToModify)) {
+            std::cout << "11. Длина автомобиля\n";
+        }
+        if (dynamic_cast<PassengerVehicle*>(elementToModify)) {
+            std::cout << "12. Количество пассажирских мест\n";
+        }
+        if (dynamic_cast<CargoVehicle*>(elementToModify)) {
+            std::cout << "13. Максимальный вес груза\n";
+        }
+        if (dynamic_cast<DumpTruck*>(elementToModify)) {
+            std::cout << "14. Объем кузова\n";
+        }
+        if (dynamic_cast<RefrigeratedCargoVehicle*>(elementToModify)) {
+            std::cout << "15. Минимальная температура\n";
+        }
+        int fieldChoice;
+        std::cout << "Введите номер поля: ";
+        std::cin >> fieldChoice;
+        std::string newStringValue;
+        int newIntValue;
+        double newDoubleValue;
+        switch (fieldChoice) {
         case 1:
-            handleCargoVehicle();
+            std::cout << "Введите новый цвет: ";
+            std::cin >> newStringValue;
+            elementToModify->setColor(newStringValue);
             break;
         case 2:
-            handlePassengerVehicle();
+            std::cout << "Введите новый бренд: ";
+            std::cin >> newStringValue;
+            elementToModify->setBrand(newStringValue);
             break;
         case 3:
-            handleCar();
+            std::cout << "Введите новую модель: ";
+            std::cin >> newStringValue;
+            elementToModify->setModel(newStringValue);
             break;
-        case 0:
-            std::cout << "Выход из программы." << std::endl;
+        case 4:
+            std::cout << "Введите новый год выпуска: ";
+            std::cin >> newIntValue;
+            elementToModify->setYear(newIntValue);
+            break;
+        case 5:
+            std::cout << "Введите новое количество лошадиных сил: ";
+            std::cin >> newIntValue;
+            elementToModify->setHorsepower(newIntValue);
+            break;
+        case 6:
+            std::cout << "Введите новый тип двигателя: ";
+            std::cin >> newStringValue;
+            elementToModify->setEngineType(newStringValue);
+            break;
+        case 7:
+            if (auto car = dynamic_cast<Car*>(elementToModify)) {
+                std::cout << "Введите новый вес автомобиля: ";
+                std::cin >> newDoubleValue;
+                car->setWeightCar(newDoubleValue);
+            }
+            break;
+        case 8:
+            if (auto car = dynamic_cast<Car*>(elementToModify)) {
+                std::cout << "Введите новое количество дверей: ";
+                std::cin >> newIntValue;
+                car->setNumberOfDoors(newIntValue);
+            }
+            break;
+        case 9:
+            if (auto sportsCar = dynamic_cast<SportsCar*>(elementToModify)) {
+                std::cout << "Введите новую максимальную скорость: ";
+                std::cin >> newDoubleValue;
+                sportsCar->setMaxSpeed(newDoubleValue);
+            }
+            break;
+        case 10:
+            if (auto sportsCar = dynamic_cast<SportsCar*>(elementToModify)) {
+                std::cout << "Введите новое время разгона до 100 км/ч: ";
+                std::cin >> newDoubleValue;
+                sportsCar->setAccelerationTime(newDoubleValue);
+            }
+            break;
+        case 11:
+            if (auto limousine = dynamic_cast<Limousine*>(elementToModify)) {
+                std::cout << "Введите новую длину автомобиля: ";
+                std::cin >> newDoubleValue;
+                limousine->setLength(newDoubleValue);
+            }
+            break;
+        case 12:
+            if (auto passengerVehicle = dynamic_cast<PassengerVehicle*>(elementToModify)) {
+                std::cout << "Введите новое количество пассажирских мест: ";
+                std::cin >> newIntValue;
+                passengerVehicle->setPassengerSeats(newIntValue);
+            }
+            break;
+        case 13:
+            if (auto cargoVehicle = dynamic_cast<CargoVehicle*>(elementToModify)) {
+                std::cout << "Введите новый максимальный вес груза: ";
+                std::cin >> newDoubleValue;
+                cargoVehicle->setMaxWeight(newDoubleValue);
+            }
+            break;
+        case 14:
+            if (auto dumpTruck = dynamic_cast<DumpTruck*>(elementToModify)) {
+                std::cout << "Введите новый объем кузова: ";
+                std::cin >> newDoubleValue;
+                dumpTruck->setLoadVolume(newDoubleValue);
+            }
+            break;
+        case 15:
+            if (auto refrigeratedCargoVehicle = dynamic_cast<RefrigeratedCargoVehicle*>(elementToModify)) {
+                std::cout << "Введите новую минимальную температуру: ";
+                std::cin >> newDoubleValue;
+                refrigeratedCargoVehicle->setMinTemperature(newDoubleValue);
+            }
             break;
         default:
-            std::cout << "Неверный выбор. Пожалуйста, попробуйте снова." << std::endl;
+            std::cout << "Неверный выбор поля.\n";
             break;
         }
-    } while (choice != 0);
+        std::cout << "Элемент успешно изменен.\n";
+        st.push(elementToModify);
+    }
+    while (!tempStack.empty()) {    // Возвращаем остальные элементы обратно в стек
+        st.push(tempStack.pop1());
+    }
 }
-*/
+
+
 template <class T>
-void Interface<T>::menu(stack<T*>& st) {
-    T value;
+void Interface<T>::menu() {
+    stack<T*> st;
     char selection;
     bool flag = true;
     do {
-        std::cout << "1. Добавить элемент стека" << std::endl;
-        std::cout << "2. Показать стек" << std::endl;
-        std::cout << "3. Удалить элемент стека" << std::endl;
-        std::cout << "4. Измененить значение поля" << std::endl;
-        std::cout << "5. Поиск" << std::endl;
-        std::cout << "6. Удалить все элементы стека" << std::endl;
-        std::cout << "7. Удалить элемент по номеру №" << std::endl;
-        std::cout << "8. Выход" << std::endl;
-        std::cout << "Сделать выбор: ";
+        std::cout << std::endl << "--- Меню ---" << std::endl
+            << "1. Добавить элемент в стек" << std::endl
+            << "2. Показать стек" << std::endl
+            << "3. Удалить элемент из стека" << std::endl
+            << "4. Изменить значение поля" << std::endl
+            << "5. Поиск" << std::endl
+            << "6. Удалить все элементы стека" << std::endl
+            << "7. Удалить элемент по номеру" << std::endl
+            << "8. Выход" << std::endl
+            << "Выберите действие: ";
         std::cin >> selection;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        rewind(stdin);
         switch (selection) {
         case '1': {
-            T* value = new T(); // Создаем указатель на объект
-            std::cin >> *value;
-            st.push(value);
+            T* newVehicle = createVehicle();
+            if (newVehicle) {
+                st.push(newVehicle);
+                std::cout << "Элемент добавлен в стек." << std::endl;
+            }
             break;
         }
         case '2': {
-            std::cout << "Показ стека..." << std::endl;
-            st.show();
+            if (st.empty()) {
+                std::cout << "Стек пуст." << std::endl;
+            }
+            else {
+                std::cout << "Содержимое стека:" << std::endl;
+                st.show();
+            }
             break;
         }
         case '3': {
-            std::cout << "Удаление элемента стека..." << std::endl;
-            T* value = st.pop1();
-            delete value; 
+            if (!st.empty()) {
+                delete st.pop1();
+                std::cout << "Верхний элемент удален из стека." << std::endl;
+            }
+            else {
+                std::cout << "Стек пуст, нечего удалять." << std::endl;
+            }
             break;
         }
         case '4': {
-            std::cout << "Изменение значения поля..." << std::endl;
-            // Реализация изменения значения поля
+            if (!st.empty()) {
+                modifyElement(st);
+            }
+            else {
+                std::cout << "Стек пуст, нечего изменять." << std::endl;
+            }
             break;
         }
         case '5': {
-            //searchVehicle(st);
+            if (!st.empty()) {
+                searchVehicle(st);
+            }
+            else {
+                std::cout << "Стек пуст, поиск невозможен." << std::endl;
+            }
             break;
         }
         case '6': {
-            std::cout << "Удаление элемента стека..." << std::endl;
-            T* value = st.pop1();
-            delete value;
+            while (!st.empty()) {
+                delete st.pop1();
+            }
+            std::cout << "Все элементы удалены из стека." << std::endl;
             break;
         }
         case '7': {
-            std::cout << "Введите номер № элемента стека: ";
-            int index;
-            std::cin >> index;
-            st.removeAt(index - 1);
+            if (!st.empty()) {
+                int index;
+                std::cout << "Введите номер элемента для удаления: ";
+                std::cin >> index;
+                st.removeAt(index - 1);
+            }
+            else {
+                std::cout << "Стек пуст, нечего удалять." << std::endl;
+            }
             break;
         }
         case '8': {
-            std::cout << "Выход из меню работы со стеком..." << std::endl;
             flag = false;
+            std::cout << "Выход из меню." << std::endl;
             break;
         }
-        default: {
-            std::cout << "Невозможный ввод. Пожалуйста, попробуйте снова." << std::endl;
-            break;
-        }
+        default:
+            std::cout << "Неверный выбор. Попробуйте снова." << std::endl;
         }
     } while (flag);
+    st.clear();
 }
-
-template <typename VehicleType>
-void handleVehicle(const std::string& prompt, const std::vector<std::pair<int, VehicleType*>>& options, stack<VehicleType*>& st) {
-    std::cout << prompt;
-    int choice;
-    std::cin >> choice;
-    for (const auto& option : options) {
-        if (option.first == choice) {
-            Interface<VehicleType> vehicle;
-            vehicle.menu(st);
-            return;
-        }
-    }
-
-    std::cout << "Неверный выбор. Пожалуйста, попробуйте снова." << std::endl;
-}
-
-template <class T>
-void Interface<T>::handleCar() {
-    handleVehicle<TransportVehicle>(
-        "Выберите тип легкового транспортного средства:\n"
-        "1. Спорткар\n"
-        "2. Внедорожник\n"
-        "3. Лимузин\n"
-        "Ваш выбор: ",
-        {
-        { 1, new SportsCar() },
-        { 2, new Jeep() },
-        { 3, new Limousine() }
-        },
-        st
-        );
-}
-
-template <class T>
-void Interface<T>::handleCargoVehicle() {
-    handleVehicle<TransportVehicle>(
-        "Выберите тип грузового транспортного средства:\n"
-        "1. Рефрижератор\n"
-        "2. Самосвал\n"
-        "Ваш выбор: ",
-        {
-            {1, new RefrigeratedCargoVehicle()},
-            {2, new DumpTruck()}
-        },
-        st
-    );
-}
-
-template <class T>
-void Interface<T>::handlePassengerVehicle() {
-    handleVehicle<TransportVehicle>(
-        "Выберите тип пассажирского транспортного средства:\n"
-        "1. Междугородний\n"
-        "2. Городской\n"
-        "3. Международный\n"
-        "Ваш выбор: ",
-        {
-            {1, new IntercityPassengerVehicle()},
-            {2, new CityPassengerVehicle()},
-            {3, new InternationalPassengerVehicle()}
-        },
-        st
-    );
-}
-
-template <class T>
-void Interface<T>::displayMainMenu() const {
-    std::cout << "Выберете объект с которым будете работать:" << std::endl;
-    std::cout << "1. Грузовое транспортное средство" << std::endl;
-    std::cout << "2. Пассажирское транспортное средство" << std::endl;
-    std::cout << "3. Легковое транспортное средство" << std::endl;
-    std::cout << "0. Выход" << std::endl;
-    std::cout << "Сделать выбор: ";
-}
-
-template <class T>
-void Interface<T>::func() {
-    int choice;
-    do {
-        displayMainMenu();
-        std::cin >> choice;
-        switch (choice) {
-        case 1:
-            handleCargoVehicle();
-            break;
-        case 2:
-            handlePassengerVehicle();
-            break;
-        case 3:
-            handleCar();
-            break;
-        case 0:
-            std::cout << "Выход из программы." << std::endl;
-            break;
-        default:
-            std::cout << "Неверный выбор. Пожалуйста, попробуйте снова." << std::endl;
-            break;
-        }
-    } while (choice != 0);
-}
-

@@ -14,6 +14,7 @@ PassengerVehicle::PassengerVehicle(const std::string& color, const std::string& 
 // Сеттер и геттер
 void PassengerVehicle::setPassengerSeats(int passengerSeats) { this->passengerSeats = passengerSeats; }
 int PassengerVehicle::getPassengerSeats() const { return passengerSeats; }
+std::string PassengerVehicle::getCategory() const { return "Пассажирские транспортные средства"; }
 
 void PassengerVehicle::show() const {
     TransportVehicle::show();
@@ -45,6 +46,11 @@ std::istream& operator>>(std::istream& in, PassengerVehicle& vehicle) {
     std::cout << "Введите количество пассажирских мест: ";
     in >> vehicle.passengerSeats;
     return in;
+}
+
+void PassengerVehicle::print(std::ostream& out) const {
+    TransportVehicle::print(out);
+    out << std::setw(20) << getPassengerSeats();
 }
 
 PassengerVehicle::~PassengerVehicle() {

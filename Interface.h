@@ -1,5 +1,4 @@
 #include<vector>
-#include<iostream>
 #include <stack>
 #include <utility>
 #include <string.h>
@@ -20,11 +19,9 @@ private:
     stack<T*> st;
 public:
     Interface() {}
-    void displayMainMenu() const;
-    void func();
-    void menu(stack<T*>& st);
-    void handleCar();
-    void handleCargoVehicle();
-    void handlePassengerVehicle();
+    void menu();
+    TransportVehicle* createVehicle();
+    void modifyElement(stack<T*>& st);
+    void searchVehicle(stack<T*>& st);
     ~Interface() {}
 };
