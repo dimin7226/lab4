@@ -1,27 +1,20 @@
-#include<vector>
-#include <stack>
-#include <utility>
-#include <string.h>
+#pragma once
+#include <iostream>
+#include <vector>
 #include "Stack.h"
-#include "RefrigeratedCargoVehicle.h"
-#include "CargoVehicle.h"
-#include "DumpTruck.h"
-#include "IntercityPassengerVehicle.h"
-#include "CityPassengerVehicle.h"
-#include "InternationalPassengerVehicle.h"
-#include "Jeep.h"
-#include "Limousine.h"
-#include "SportsCar.h"
+#include "TransportVehicle.h"
 
 template <class T>
 class Interface {
-private:
-    stack<T*> st;
 public:
-    Interface() {}
+    void func();
     void menu();
-    TransportVehicle* createVehicle();
+private:
+    void displaySearchMenu();
+    std::vector<int> getSearchParameters();
+    std::vector<std::string> getSearchValues(const std::vector<int>& searchParams);
+    std::string getVehicleValue(T* vehicle, int param);
     void modifyElement(stack<T*>& st);
     void searchVehicle(stack<T*>& st);
-    ~Interface() {}
+    void performSearch(stack<T*>& st, const std::vector<int>& searchParams, const std::vector<std::string>& searchValues);
 };
